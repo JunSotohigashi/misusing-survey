@@ -1,5 +1,4 @@
 <template>
-    <h1>クイズ</h1>
     <Quiz />
 </template>
 

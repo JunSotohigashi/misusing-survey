@@ -1,10 +1,18 @@
 <template>
     <div v-if="questions.length">
         <div v-if="showTitle">
-            <h2>クイズへようこそ</h2>
             <button @click="startQuiz">スタート</button>
         </div>
         <div v-else-if="!submitted">
+            <div class="progress-bar-wrapper">
+                <div class="progress-label">
+                    問題 {{ currentIndex + 1 }} / {{ questions.length }}
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-inner" :style="{ width: (currentIndex / questions.length * 100) + '%' }">
+                    </div>
+                </div>
+            </div>
             <div class="question-block">
                 <p><strong>Q{{ currentIndex + 1 }}: {{ currentQuestion.question }}</strong></p>
                 <div v-for="option in currentQuestion.options" :key="option">
@@ -26,8 +34,8 @@
                     戻った回数: {{ backCounts[q.id] || 0 }}
                 </li>
             </ul>
-            <button @click="downloadResult">結果をダウンロード</button>
             <button @click="restart">最初からやり直す</button>
+            <button @click="downloadResult">結果をダウンロード</button>
         </div>
     </div>
     <div v-else>
@@ -124,5 +132,28 @@ function downloadResult() {
 
 button {
     margin-top: 1em;
+}
+
+.progress-bar-wrapper {
+    margin-bottom: 1em;
+}
+
+.progress-label {
+    font-size: 0.95em;
+    margin-bottom: 0.2em;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #eee;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    height: 100%;
+    background: #42b983;
+    transition: width 0.3s;
 }
 </style>
