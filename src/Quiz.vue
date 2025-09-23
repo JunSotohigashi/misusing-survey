@@ -29,7 +29,7 @@
             <h2>あなたの回答</h2>
             <ul>
                 <li v-for="q in questions" :key="q.id">
-                    Q{{ q.id }}: {{ answers[q.id] || '未回答' }}<br />
+                    {{ q.id }}: {{ answers[q.id] || '未回答' }}<br />
                     回答までの累計時間: {{ formatTime(answerTimes[q.id] || 0) }}<br />
                     戻った回数: {{ backCounts[q.id] || 0 }}
                 </li>
