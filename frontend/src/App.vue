@@ -1,5 +1,6 @@
 <template>
-    <Quiz />
+	<h1>クイズ</h1>
+	<Quiz />
 </template>
 
 <script setup>

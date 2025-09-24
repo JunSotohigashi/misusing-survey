@@ -1,0 +1,28 @@
+services:
+  frontend:
+    build: ./frontend
+    image: junsotohigashi/misusing-survey.frontend
+    container_name: frontend
+    restart: always
+    networks:
+      - appnet
+  backend:
+    build: ./backend
+    image: junsotohigashi/misusing-survey.backend
+    container_name: backend
+    restart: always
+    networks:
+      - appnet
+  reverse-proxy:
+    build: ./reverse-proxy
+    image: junsotohigashi/misusing-survey.reverse-proxy
+    container_name: reverse-proxy
+    ports:
+      - "8080:80"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - appnet
+networks:
+  appnet:
