@@ -1,17 +1,17 @@
 [
     {
-        "id": 1,
-        "question": "What is the capital of France?",
-        "options": ["Berlin", "Madrid", "Paris", "Rome"]
+        "id": "2f30d310a207473c41efcf1e6d597afd",
+        "question": "実質的には水中用レイバーで、コックピットは****で操縦者と指揮官の２人乗り。",
+        "options": ["復座式", "複座式"]
     },
     {
-        "id": 2,
-        "question": "Which planet is known as the Red Planet?",
-        "options": ["Earth", "Mars", "Jupiter", "Saturn"]
+        "id": "1c1ead5b73ab0a568c0b8855ea142402",
+        "question": "また、本作からは、これまでのガスト作品で長らくプランナーとしてサブイベントを担当してきた岡村佳人がディレクターを****いる。",
+        "options": ["勤めて", "務めて"]
     },
     {
-        "id": 3,
-        "question": "What is the largest ocean on Earth?",
-        "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"]
+        "id": "9ff209d7cbbad5f1a4a313bc36e4d61b",
+        "question": "ビデオカードを例に取ると、同じＶＧＡグラフィックスチップを用いても、****の回路設計の善し悪しで性能に大きな開きが出る。",
+        "options": ["基盤", "基板"]
     }
 ]
