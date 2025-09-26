@@ -9,17 +9,17 @@
 					問題 {{ currentIndex + 1 }} / {{ questions.length }}
 				</div>
 				<div class="progress-bar">
-					<div class="progress-bar-inner" :style="{ width: ((currentIndex + 1) / questions.length * 100) + '%' }"></div>
+					<div class="progress-bar-inner"
+						:style="{ width: ((currentIndex + 1) / questions.length * 100) + '%' }"></div>
 				</div>
 			</div>
 			<div class="question-block">
 				<p><strong>Q{{ currentIndex + 1 }}: {{ currentQuestion.question }}</strong></p>
-				<div v-for="option in currentQuestion.options" :key="option">
-					<label>
-						<input type="radio" :name="'question-' + currentQuestion.id" :value="option"
-							v-model="answers[currentQuestion.id]" @change="nextQuestion" required>
+				<div class="options-row">
+					<button v-for="option in currentQuestion.options" :key="option" class="option-btn"
+						@click="selectOption(option)">
 						{{ option }}
-					</label>
+					</button>
 				</div>
 			</div>
 			<button @click="prevQuestion" :disabled="currentIndex === 0">戻る</button>
@@ -71,6 +71,12 @@ function startQuiz() {
 	startTime.value = Date.now();
 }
 
+function selectOption(option) {
+	const qid = currentQuestion.value.id;
+	answers.value[qid] = option;
+	nextQuestion();
+}
+
 function nextQuestion() {
 	// 経過時間を加算
 	const qid = currentQuestion.value.id;
@@ -102,7 +108,7 @@ function restart() {
 }
 
 function formatTime(ms) {
-	return ms + 'ミリ秒';
+	return ms + 'ms';
 }
 
 function downloadResult() {
@@ -128,16 +134,42 @@ function downloadResult() {
 .question-block {
 	margin-bottom: 1.5em;
 }
+
+.options-row {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	margin-bottom: 1em;
+}
+
+.option-btn {
+	padding: 0.6em 1.2em;
+	font-size: 1em;
+	border: 1px solid #42b983;
+	background: #fff;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+}
+
+.option-btn:hover {
+	background: #42b983;
+	color: #fff;
+}
+
 button {
 	margin-top: 1em;
 }
+
 .progress-bar-wrapper {
 	margin-bottom: 1em;
 }
+
 .progress-label {
 	font-size: 0.95em;
 	margin-bottom: 0.2em;
 }
+
 .progress-bar {
 	width: 100%;
 	height: 12px;
@@ -145,6 +177,7 @@ button {
 	border-radius: 6px;
 	overflow: hidden;
 }
+
 .progress-bar-inner {
 	height: 100%;
 	background: #42b983;
