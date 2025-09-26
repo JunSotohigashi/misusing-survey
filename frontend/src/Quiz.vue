@@ -28,7 +28,7 @@
 			<h2>あなたの回答</h2>
 			<ul>
 				<li v-for="q in questions" :key="q.id">
-					Q{{ q.id }}: {{ answers[q.id] || '未回答' }}<br />
+					{{ q.id }}: {{ answers[q.id] || '未回答' }}<br />
 					回答までの累計時間: {{ formatTime(answerTimes[q.id] || 0) }}<br />
 					戻った回数: {{ backCounts[q.id] || 0 }}
 				</li>
@@ -131,56 +131,143 @@ function downloadResult() {
 </script>
 
 <style scoped>
+body,
+.quiz-root {
+	font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'sans-serif';
+	background: #f6f8fa;
+	min-height: 100vh;
+	margin: 0;
+}
+
+.quiz-root {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	min-height: 100vh;
+	padding: 2.5em 1em 1.5em 1em;
+}
+
+.card {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 4px 24px 0 rgba(60, 60, 60, 0.08);
+	padding: 2em 1.5em 1.5em 1.5em;
+	max-width: 480px;
+	width: 100%;
+	margin-bottom: 2em;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
 .question-block {
 	margin-bottom: 1.5em;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px 0 rgba(60, 60, 60, 0.06);
+	padding: 1.2em 1em 1em 1em;
+	margin-top: 0.5em;
 }
 
 .options-row {
 	display: flex;
-	gap: 1em;
 	flex-wrap: wrap;
+	gap: 1em;
 	margin-bottom: 1em;
+	justify-content: center;
 }
 
 .option-btn {
-	padding: 0.6em 1.2em;
-	font-size: 1em;
-	border: 1px solid #42b983;
-	background: #fff;
-	border-radius: 6px;
+	padding: 0.7em 1.6em;
+	font-size: 1.08em;
+	border: none;
+	background: #f0f4f8;
+	color: #222;
+	border-radius: 8px;
 	cursor: pointer;
-	transition: background 0.2s, color 0.2s;
+	box-shadow: 0 2px 8px 0 rgba(60, 60, 60, 0.04);
+	transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+	font-weight: 500;
 }
 
-.option-btn:hover {
+.option-btn:hover,
+.option-btn:focus {
 	background: #42b983;
 	color: #fff;
+	box-shadow: 0 4px 16px 0 rgba(66, 185, 131, 0.12);
 }
 
 button {
 	margin-top: 1em;
+	padding: 0.6em 1.4em;
+	font-size: 1em;
+	border: none;
+	border-radius: 8px;
+	background: #e0e7ef;
+	color: #222;
+	cursor: pointer;
+	font-weight: 500;
+	transition: background 0.18s, color 0.18s;
+}
+
+button:hover,
+button:focus {
+	background: #42b983;
+	color: #fff;
 }
 
 .progress-bar-wrapper {
-	margin-bottom: 1em;
+	margin-bottom: 1.5em;
+	width: 100%;
 }
 
 .progress-label {
-	font-size: 0.95em;
-	margin-bottom: 0.2em;
+	font-size: 1em;
+	margin-bottom: 0.3em;
+	color: #555;
+	text-align: center;
 }
 
 .progress-bar {
 	width: 100%;
-	height: 12px;
-	background: #eee;
-	border-radius: 6px;
+	height: 14px;
+	background: #e0e7ef;
+	border-radius: 7px;
 	overflow: hidden;
 }
 
 .progress-bar-inner {
 	height: 100%;
-	background: #42b983;
+	background: linear-gradient(90deg, #42b983 60%, #2c8c6b 100%);
 	transition: width 0.3s;
+}
+
+h1,
+h2 {
+	text-align: center;
+	color: #222;
+	font-weight: 600;
+	margin-top: 0;
+}
+
+ul {
+	padding-left: 1.2em;
+}
+
+@media (max-width: 600px) {
+	.card {
+		padding: 1.2em 0.5em 1em 0.5em;
+		max-width: 98vw;
+	}
+
+	.options-row {
+		gap: 0.5em;
+	}
+
+	.option-btn {
+		font-size: 0.98em;
+		padding: 0.6em 0.8em;
+	}
 }
 </style>
